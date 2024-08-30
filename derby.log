@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Aug 30 17:54:12 ART 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0191-a511-2f31-0000034b7910 
+on database directory C:\Users\ferna\OneDrive\Escritorio\Ejercicio_Integrador\esquemaDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Loaded from file:/C:/Users/ferna/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=22.0.2+9-70
+user.dir=C:\Users\ferna\OneDrive\Escritorio\Ejercicio_Integrador
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
