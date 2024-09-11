@@ -1,6 +1,7 @@
 package org.example.dao.producto;
 
 import org.example.dao.entidades.Producto;
+import org.example.dto.ProductoDTO;
 
 import java.sql.*;
 
@@ -25,23 +26,22 @@ public class ProductoDAOMysql implements ProductoDAO{
     }
 
     @Override
-    public Producto obtenerMasRecaudador() throws SQLException {
+    public ProductoDTO obtenerMasRecaudador() throws SQLException {
         String obtenerMasRecaudadorQuery =
-                "select p.* from producto p " +
-                        "where p.idProducto = (" +
-                        "select fp.idProducto from factura_producto fp " +
+                "select p.*, sum(fp.cantidad*p.valor) as recaudado from producto p " +
+                        "inner join factura_producto fp " +
+                        "on fp.idProducto = p.idProducto " +
                         "group by fp.idProducto " +
                         "order by sum(fp.cantidad*p.valor) DESC " +
-                        "fetch first 1 rows only" +
-                        ")";
+                        "limit 3";
 
         ResultSet rs = this.connection.prepareStatement(obtenerMasRecaudadorQuery).executeQuery();
-        Producto producto = null;
+        ProductoDTO producto = null;
         if (rs.next()) {
-            producto = new Producto(
-                    rs.getInt("idProducto"),
+            producto = new ProductoDTO(
                     rs.getString("nombre"),
-                    rs.getFloat("valor"));
+                    rs.getFloat("valor"),
+                    rs.getFloat("recaudado"));
         }
         this.connection.commit();
         return producto;

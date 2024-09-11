@@ -9,7 +9,7 @@ public class CreadorDeTablasMysql extends CreadorDeTablas {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "";
     private Connection connection;
 
     public CreadorDeTablasMysql() throws SQLException {
@@ -26,9 +26,9 @@ public class CreadorDeTablasMysql extends CreadorDeTablas {
         this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
         connection.setAutoCommit(false);
 
-        String crearEsquema = "CREATE DATABASE IF NOT EXISTS esquemaDB";
+        String crearEsquema = "CREATE DATABASE IF NOT EXISTS integrador1";
 
-        String usarEsquema = "USE esquemaDB";
+        String usarEsquema = "USE integrador1";
 
         String tableCliente = "CREATE TABLE cliente (" +
                 "idCliente INT NOT NULL, " +

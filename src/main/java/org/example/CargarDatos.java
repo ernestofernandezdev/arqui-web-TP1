@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class CargarDatos {
     public static void main(String[] args) {
-        DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.DERBY_DRIVER);
+        DAOFactory daoFactory = DAOFactory.getDaoFactory(DAOFactory.MYSQL_DRIVER);
         if (daoFactory == null) {
             System.out.println("No se puede crear el DAOFactory");
             return;

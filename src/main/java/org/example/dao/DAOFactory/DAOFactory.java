@@ -13,7 +13,7 @@ public abstract class DAOFactory {
         switch (driver) {
             case MYSQL_DRIVER: return new MysqlDAOFactory();
             case DERBY_DRIVER: return new DerbyDAOFactory();
-            default: return null;
+            default: throw new RuntimeException("El driver no existe.");
         }
     }
 

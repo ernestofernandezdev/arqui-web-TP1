@@ -16,9 +16,9 @@ import java.sql.SQLException;
 
 public class MysqlDAOFactory extends DAOFactory {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/esquemaDB";
+    private static final String URL = "jdbc:mysql://localhost:3306/integrador1";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "";
     private Connection connection;
 
     public MysqlDAOFactory() {

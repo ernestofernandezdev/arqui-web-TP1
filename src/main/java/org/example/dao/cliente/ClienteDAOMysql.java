@@ -1,5 +1,6 @@
 package org.example.dao.cliente;
 import org.example.dao.entidades.Cliente;
+import org.example.dto.ClienteDTO;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -26,8 +27,8 @@ public class ClienteDAOMysql implements ClienteDAO{
     }
 
     @Override
-    public List<Cliente> listarPorMasFacturados() throws SQLException {
-        String listarClientesQuery = "select c.idCliente, c.nombre, c.email, sum(fp.cantidad*p.valor) from cliente c " +
+    public List<ClienteDTO> listarPorMasFacturados() throws SQLException {
+        String listarClientesQuery = "select c.idCliente, c.nombre, c.email, sum(fp.cantidad*p.valor) as facturado from cliente c " +
                 "inner join factura f on c.idCliente=f.idCliente " +
                 "inner join factura_producto fp on f.idFactura=fp.idFactura " +
                 "inner join producto p on p.idProducto=fp.idProducto " +
@@ -35,9 +36,9 @@ public class ClienteDAOMysql implements ClienteDAO{
                 "order by sum(fp.cantidad*p.valor) DESC";
 
         ResultSet rs = this.connection.prepareStatement(listarClientesQuery).executeQuery();
-        List<Cliente> clientes = new LinkedList<>();
+        List<ClienteDTO> clientes = new LinkedList<>();
         while (rs.next()) {
-            clientes.add(new Cliente(rs.getInt("idCliente"), rs.getString("nombre"), rs.getString("email")));
+            clientes.add(new ClienteDTO(rs.getString("nombre"), rs.getString("email"), rs.getFloat("facturado")));
         }
         this.connection.commit();
 
